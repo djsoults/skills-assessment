@@ -9,11 +9,12 @@ namespace FizzLib
         {
             var dictionary = new Dictionary<int, string>();
 
-            for (var i = min; i < max; i++)
+            for (var i = min; i <= max; i++)
             {
                 var value = "";
                 value = value + GetFizz(i);
                 value = value + GetBuzz(i);
+                value = PrintNumberIfEmpty(i, value);
 
                 dictionary.Add(i, value);
             }
@@ -21,14 +22,26 @@ namespace FizzLib
             return dictionary;
         }
 
+        private string PrintNumberIfEmpty(int i, string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return i.ToString();
+            }
+
+            return value;
+        }
+
         private static string GetFizz(int i)
         {
-            return i % 3 == 0 ? "fizz" : i.ToString();
+            return i % 3 == 0 ? "fizz" : "";
         }
 
         private static string GetBuzz(int i)
         {
-            return i % 5 == 0 ? "buzz" : i.ToString();
+            return i % 5 == 0 ? "buzz" : "";
         }
+
+
     }
 }
